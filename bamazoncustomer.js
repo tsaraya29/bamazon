@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var inq = require("inquirer");
+var inquirer = require("inquirer");
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -19,3 +19,19 @@ var con = mysql.createConnection({
     });
     
   });
+
+  //Begin asking question:
+  inquirer
+  .prompt([
+    {
+      type: "list",
+      message: "What would you like to purchase?",
+      choices: ["choice1", "choice2","choice3"],
+      name: "item"
+    }
+  ])
+  .then(function(inquirerResponse){
+    console.log("You have selected ", inquirerResponse.name);
+    });
+
+
