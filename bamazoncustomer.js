@@ -37,21 +37,23 @@ var con = mysql.createConnection({
     }   
   ])
   .then(function(response){
-    con.query("SELECT stock_quantity FROM products WHERE item_id=?", [response.choice],function(err, result){
+    var prodQuantity; 
+    con.query("SELECT stock_quantity FROM products WHERE item_id=?", [response.choice],
+        function(err, result){
       if (err) throw err;
-      if (result[0].stock_quantity < response.quantity)
-      console.log("Sorry, we don't have enough");
-      });
-    // var stuff= con.query ("SELECT * FROM products WHERE item_id=?",
-    //   [response.choice]);
-    //    console.log (stuff);
-    // if (stock_quanity < response.quantity) {
-    //   console.log ("Sorry, we only have " + products.stock_quanity + "left");
-    // }
-    // console.log("You have selected ", response.product_name);
+       prodQuantity = result[0].stock_quantity;
+      console.log("Number in stock: ", prodQuantity); 
+      
+      if (prodQuantity > response.quantity) {     
+      console.log ("We have enough to fulfull your order")}
+      else
+      //put else statement here
+      console.log("Sorry, we don't have enough of that product");
+      return;
+      
+      });  
   
-    // console.log("You have selected ", Response.choice);
-    });  
-  };
-
+      con.end();
+    });   
+  }
  
