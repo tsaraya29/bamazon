@@ -6,5 +6,6 @@ purchase information, they receive a success message stating that their purchase
 currently available, they receive a decline message and cannot complete the purchase.
 
 ## Screenshots
-!(/images/success.png)
+![success](images/success.PNG)
 
+![NotEnough](images/notenough.PNG)
